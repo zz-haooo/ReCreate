@@ -1,0 +1,1 @@
+Tensor_3D = torch.diag_embed(Tensor_2D)

@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.linspace(0, 2 * np.pi, 10)
+y = np.cos(x)
+
+# set legend title to xyz and set the title font to size 20
+# SOLUTION START

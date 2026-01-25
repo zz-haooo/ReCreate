@@ -1,0 +1,2 @@
+plt.figure(figsize=(5, 5), dpi=300)
+plt.plot(y, x)

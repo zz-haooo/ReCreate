@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# plot y over x
+# do not show xticks for the plot
+# SOLUTION START

@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+y = 2 * np.random.rand(10)
+x = np.arange(10)
+ax = sns.lineplot(x=x, y=y)
+
+# How to plot a dashed line on seaborn lineplot?
+# SOLUTION START

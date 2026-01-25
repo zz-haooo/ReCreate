@@ -1,0 +1,4 @@
+def g(df):
+    return pd.DataFrame({'text': [', '.join(df['text'].str.strip('"').tolist())]})
+
+result = g(df.copy())

@@ -1,0 +1,12 @@
+Problem:
+How can I get get the position (indices) of the second largest value in a multi-dimensional NumPy array `a`?
+All elements in a are positive for sure.
+Note that I want to get the unraveled index of it, in C order.
+A:
+<code>
+import numpy as np
+a = np.array([[10,50,30],[60,20,40]])
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

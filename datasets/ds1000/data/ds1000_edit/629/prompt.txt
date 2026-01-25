@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset("penguins")[["bill_length_mm", "species", "sex"]]
+
+# Use seaborn catplot to plot multiple barplots of "bill_length_mm" over "sex" and separate into different subplot columns by "species"
+# Do not share y axis across subplots
+# SOLUTION START

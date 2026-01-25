@@ -1,0 +1,8 @@
+import matplotlib.pyplot as plt
+
+l = ["a", "b", "c"]
+data = [225, 90, 50]
+
+# Make a donut plot of using `data` and use `l` for the pie labels
+# Set the wedge width to be 0.4
+# SOLUTION START

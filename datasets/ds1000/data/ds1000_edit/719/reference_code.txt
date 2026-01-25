@@ -1,0 +1,1 @@
+z_scores = scipy.stats.norm.ppf(p_values)

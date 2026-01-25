@@ -1,0 +1,2 @@
+_, p_value = scipy.stats.ttest_ind(a, b,  equal_var = False, nan_policy = 'omit')
+

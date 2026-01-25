@@ -1,0 +1,4 @@
+def g(df):
+    return df.loc[(df['keep_if_dup'] =='Yes') | ~df['url'].duplicated(keep='last')]
+
+result = g(df.copy())

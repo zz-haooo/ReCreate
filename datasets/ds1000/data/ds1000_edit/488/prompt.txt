@@ -1,0 +1,12 @@
+Problem:
+
+Right now, I have my data in a 3D numpy array. If I was to use MinMaxScaler fit_transform on each matrix of the array, it will normalize it column by column, whereas I wish to normalize entire matrices. Is there anyway to do that?
+A:
+<code>
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+a = np.array([[[1, 0.5, -2], [-0.5,1, 6], [1,1,1]], [[-2, -3, 1], [-0.5, 10, 6], [1,1,1]]])
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

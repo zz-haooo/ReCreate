@@ -1,0 +1,199 @@
+{# ReCreate-Agent Initial Creation Instance Prompt - UNIFIED for all domains #}
+
+# Task: Create Initial Agent Scaffold
+
+**Mode: Initial Creation** — Design the first scaffold from scratch.
+
+Create `current/scaffold.yaml` for an AI agent that solves **{{ domain }}** tasks.
+
+---
+
+## 1. Domain Description
+
+{{ domain_description }}
+
+---
+
+## 2. Runtime Environment
+
+| Property | Value |
+|----------|-------|
+| Container | Docker with Linux shell |
+| Working directory | `{{ environment.codebase_path }}` |
+| Timeout | {{ environment.timeout_seconds }} seconds per command |
+| Available packages | {{ environment.packages | join(', ') }} |
+
+**Hard Constraints:**
+- Non-interactive: NO vim, nano, less, read, or interactive prompts
+- Commands don't persist directory changes (use `cd /path && command`)
+
+---
+
+## 3. Agent Response Format (CRITICAL)
+
+**THE #1 CAUSE OF AGENT FAILURE**: Generating multiple code blocks in one response.
+
+The agent MUST output EXACTLY this format every turn:
+
+```
+THOUGHT: <single paragraph of analysis>
+
+```{{ code_block_lang | default('bash') }}
+<exactly ONE command>
+```
+```
+
+Your scaffold must enforce this strictly in the system_template.
+
+{% if code_block_lang == 'python' %}
+**Note:** This domain uses **Python** code blocks (not bash). The agent writes Python code that executes in a REPL environment.
+{% endif %}
+
+---
+
+## 4. Anti-Cheat Rules (MUST include in scaffold)
+
+{% if rules.anti_cheat -%}
+{% for rule in rules.anti_cheat -%}
+- ❌ {{ rule }}
+{% endfor -%}
+{% endif %}
+These rules MUST be prominently included in the scaffold to prevent cheating.
+
+---
+
+## 5. Task Submission
+
+When the agent completes the task, it must run:
+
+```{{ code_block_lang | default('bash') }}
+{{ submission.command }}
+```
+
+{{ submission.instructions }}
+
+---
+
+## 6. Evaluation Criteria
+
+- **Success criteria**: {{ evaluation.success_criteria }}
+- **Error details**: Check `{{ evaluation.error_file }}` - {{ evaluation.error_file_desc }}
+
+---
+
+## 7. Scaffold YAML Structure
+
+Your scaffold must contain these fields:
+
+{% raw %}
+```yaml
+system_template: |
+  # Role description and response format
+  # Include anti-cheat rules here
+  # Keep it concise but complete
+
+instance_template: |
+  # Task presentation: {{task}}
+  # Submission instructions
+
+action_observation_template: |
+  <returncode>{{output.returncode}}</returncode>
+  {% if output.output | length < 10000 -%}
+  <output>
+  {{ output.output -}}
+  </output>
+  {%- else -%}
+  <warning>Output too long. Use head/tail/sed to view smaller portions, or more specific grep patterns.</warning>
+  <output_head>
+  {{ output.output[:5000] }}
+  </output_head>
+  <output_tail>
+  {{ output.output[-5000:] }}
+  </output_tail>
+  {%- endif -%}
+
+format_error_template: |
+  ERROR: Expected EXACTLY ONE code block, found {{actions|length}}.
+  
+  Correct format:
+  THOUGHT: Your reasoning
+  
+  ```bash
+  your_command
+  ```
+
+memory_template: |
+  ## Memory System
+  You can read and write memories to learn from your experiences.
+  
+  ### Read (search past lessons):
+  python3 /workspace/agent_memory/search_memory.py "keyword"
+  
+  ### Write (save a lesson you learned):
+  python3 /workspace/agent_memory/write_memory.py --title "Short title" --content "What you learned" --tags "tag1,tag2"
+  
+  **When to read memories:**
+  - Before solving a task, search for relevant lessons
+  - When encountering an error, search for similar past solutions
+  
+  **When to write memories:**
+  - After solving a tricky problem, save the key insight
+  - When discovering a useful pattern, record it for future use
+{% endraw %}
+step_limit: {{ suggested_limits.step_limit }}
+cost_limit: {{ suggested_limits.cost_limit }}
+```
+
+{% if scaffold_system %}
+---
+
+## 8. Reference Template (IMPORTANT - use as starting point)
+
+Here is a reference `system_template` for this domain. **Use this as your base**:
+
+```
+{{ scaffold_system }}
+```
+
+And reference `instance_template`:
+
+```
+{{ scaffold_instance }}
+```
+{% endif %}
+
+**Notes:**
+- `system_template`: Define the agent's role, response format, and rules
+- `instance_template`: Present the task using `{% raw %}{{task}}{% endraw %}` variable
+- `action_observation_template`: Keep as shown (rarely needs modification)
+- `format_error_template`: Message shown when agent uses wrong format
+- `memory_template`: **Define when/how Agent should read and write memories** (merged into system_template at runtime)
+
+**Agent Resources (available in Docker):**
+- Tools: `{{ tools_path | default('/workspace/agent_tools') }}/<category>/<name>/main.py`
+- Memory Read: `{{ memory_path | default('/workspace/agent_memory') }}/search_memory.py "keyword"`
+- Memory Write: `{{ memory_path | default('/workspace/agent_memory') }}/write_memory.py --title "Title" --content "Content" --tags "tag"`
+
+{% if common_commands %}
+**Common Commands for this Domain:**
+{% for name, cmd in common_commands.items() %}- {{ name }}: `{{ cmd }}`
+{% endfor %}
+{% endif %}
+
+---
+
+## Your Task Now
+
+Create `current/scaffold.yaml` that:
+1. Enforces the ONE thought + ONE {{ code_block_lang | default('bash') }} block format strictly
+2. Includes all anti-cheat rules prominently
+3. Provides clear task presentation and submission instructions
+4. Is concise but complete
+
+```bash
+cat > current/scaffold.yaml << 'EOF'
+# Your complete scaffold here
+EOF
+```
+
+Then verify with `cat current/scaffold.yaml | head -50` and complete.

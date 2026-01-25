@@ -1,0 +1,2 @@
+plt.plot(x, y)
+ax.set_xticks(np.arange(1, 11))

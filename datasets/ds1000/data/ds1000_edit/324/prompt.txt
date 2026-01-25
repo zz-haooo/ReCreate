@@ -1,0 +1,16 @@
+Problem:
+I'm working on a problem that has to do with calculating angles of refraction and what not. However, it seems that I'm unable to use the numpy.cos() function in degrees. I have tried to use numpy.degrees() and numpy.rad2deg().
+degree = 90
+numpy.cos(degree)
+numpy.degrees(numpy.cos(degree))
+But with no help. 
+How do I compute cosine value using degree?
+Thanks for your help.
+A:
+<code>
+import numpy as np
+degree = 90
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

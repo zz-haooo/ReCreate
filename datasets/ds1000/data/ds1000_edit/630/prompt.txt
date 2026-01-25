@@ -1,0 +1,4 @@
+import matplotlib.pyplot as plt
+
+# draw a circle centered at (0.5, 0.5) with radius 0.2
+# SOLUTION START

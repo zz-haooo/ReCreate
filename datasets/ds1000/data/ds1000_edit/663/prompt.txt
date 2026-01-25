@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+x = np.random.random(10)
+y = np.random.random(10)
+z = np.random.random(10)
+
+# Make a 3D scatter plot of x,y,z
+# change the view of the plot to have 100 azimuth and 50 elevation
+# SOLUTION START

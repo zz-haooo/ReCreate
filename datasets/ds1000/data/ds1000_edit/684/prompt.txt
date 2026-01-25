@@ -1,0 +1,19 @@
+Problem:
+I'm using tensorflow 2.10.0.
+I have a tensor that have shape (50, 100, 512) and i want to reshape it or add two new dimensions so that the new tensor have shape (1, 50, 100, 1, 512).
+a = tf.constant(np.random.rand(50, 100, 512))
+
+How can I solve it. Thanks
+
+A:
+<code>
+import tensorflow as tf
+import numpy as np
+
+
+np.random.seed(10)
+a = tf.constant(np.random.rand(50, 100, 512))
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

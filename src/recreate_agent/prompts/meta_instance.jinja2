@@ -1,0 +1,135 @@
+{# ReCreate-Agent Instance Prompt - Data context for individual samples #}
+{# Uses unified DomainPromptConfig parameters, no domain-specific branching #}
+{# Ablation experiment switches passed as variables #}
+
+# Agent Execution Data
+
+{% if recent_failures %}
+{% for f in recent_failures %}
+## Case: `{{ f.instance_id }}`
+
+**Task**: {{ f.problem_summary }}
+
+{% if ablation_eval_results|default(true) %}
+**Result**: {{ f.exit_status }}{% if f.error_type %} ({{ f.error_type }}){% endif %}
+
+**Steps**: {{ f.n_steps }} | **Cost**: ${{ "%.4f"|format(f.total_cost or 0) }}
+
+{% if f.key_issues %}
+**Key Issues (IMPORTANT - Read Carefully)**:
+{% for issue in f.key_issues %}- {{ issue }}
+{% endfor %}
+{% endif %}
+
+{% if f.eval_result %}
+**Evaluation Results**:
+{# Unified format: use formatted_result structure #}
+{% if f.get('formatted_result') %}
+- {{ f.formatted_result.primary_metric_name }}: {{ f.formatted_result.primary_metric_value }}
+{% for name, value in f.formatted_result.get('secondary_metrics', []) %}- {{ name }}: {{ value }}
+{% endfor %}
+{% if f.formatted_result.get('failure_items') %}
+**{{ f.formatted_result.get('failure_list_name', 'Failures') }}:**
+{% for item in f.formatted_result.failure_items[:10] %}- {{ item }}
+{% endfor %}
+{% endif %}
+{% else %}
+{# Fallback: display raw eval_result #}
+- Score: {{ "%.4f"|format(f.score|default(0)) }}
+{% if f.eval_result.get('error') %}- Error: {{ f.eval_result.get('error') }}{% endif %}
+{% if f.eval_result.get('tests_passed') is defined %}- Tests: {{ f.eval_result.get('tests_passed', 0) }}P/{{ f.eval_result.get('tests_failed', 0) }}F{% endif %}
+{% if f.eval_result.get('pass_count') is defined %}- Assertions: {{ f.eval_result.get('pass_count', 0) }} passed, {{ f.eval_result.get('fail_count', 0) }} failed{% endif %}
+{% if f.eval_result.get('expected_answer') %}- Expected: {{ f.eval_result.get('expected_answer') }}{% endif %}
+{% if f.eval_result.get('extracted_answer') %}- Agent Answer: {{ f.eval_result.get('extracted_answer') }}{% endif %}
+{% endif %}
+{% endif %}
+
+{% if f.problematic_decisions %}
+**Problematic Decisions**:
+{% for decision in f.problematic_decisions %}- {{ decision }}
+{% endfor %}
+{% endif %}
+{% else %}
+**Result**: Task attempted (details not available in ablation mode)
+{% endif %}
+
+{% if ablation_trajectory|default(true) or ablation_eval_results|default(true) %}
+**Files to inspect**:
+{% if ablation_trajectory|default(true) %}
+- Trajectory: `results/{{ f.instance_id }}/{{ f.instance_id }}.traj.json`
+{% endif %}
+{% if ablation_eval_results|default(true) %}
+- Evaluation: `results/{{ f.instance_id }}/evaluation.txt`
+{% if f.get('formatted_result') and f.formatted_result.get('extra_files') %}
+{% for path, desc in f.formatted_result.extra_files %}- {{ desc }}: `results/{{ f.instance_id }}/{{ path }}`
+{% endfor %}
+{% elif f.get('extra_files') %}
+{% for path, desc in f.extra_files %}- {{ desc }}: `results/{{ f.instance_id }}/{{ path }}`
+{% endfor %}
+{% else %}
+- Eval result: `results/{{ f.instance_id }}/eval_result.json`
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% endfor %}
+{% elif recent_successes %}
+{% for s in recent_successes %}
+## Case: `{{ s.instance_id }}`
+
+**Task**: {{ s.problem_summary | default("See trajectory") }}
+
+{% if ablation_eval_results|default(true) %}
+**Result**: Resolved ✓
+
+**Steps**: {{ s.n_steps }} | **Cost**: ${{ "%.4f"|format(s.total_cost or 0) }}
+
+{% if s.good_decisions %}
+**Effective Decisions**:
+{% for decision in s.good_decisions %}- {{ decision }}
+{% endfor %}
+{% endif %}
+{% else %}
+**Result**: Task completed
+{% endif %}
+
+{% if ablation_trajectory|default(true) %}
+**Trajectory**: `results/{{ s.instance_id }}/{{ s.instance_id }}.traj.json`
+{% endif %}
+
+{% endfor %}
+{% else %}
+*No case data available.*
+{% endif %}
+
+---
+
+**Scaffold**: `current/scaffold.yaml`
+
+**Available for Agent**:
+- Tools: `ls current/agent_tools/` (if any exist)
+- Memories: `cat current/agent_memory/memories.yaml` (historical lessons)
+
+{% if ablation_modification_guidance|default(true) %}
+*Apply your thinking framework to this data: identify patterns, decide on the effective and useful interventions, and consider how they will generalize to future tasks.*
+{% endif %}
+
+**Actions you can take:**
+1. **Modify scaffold** - Update rules, workflow, format
+2. **Create tool** - Add executable helper scripts
+3. **Add memory** - Store concise lessons learned (use `python3 tools/memory_manager.py add ...`)
+
+{% if recent_failures %}
+**💡 TIP: The task(s) above FAILED. Consider adding a memory to help future agents avoid similar mistakes!**
+Example: `python3 tools/memory_manager.py add --title "Short lesson" --content "What went wrong and how to avoid it" --tags "error"`
+{% endif %}
+
+**Remember to update scaffold** if you create tools/memories, so Agent knows they exist:
+- Tools: `{{ tools_path | default('/workspace/agent_tools') }}/<category>/<name>/main.py`
+- Memory Read: `python3 {{ memory_path | default('/workspace/agent_memory') }}/search_memory.py "keyword"`
+- Memory Write: `python3 {{ memory_path | default('/workspace/agent_memory') }}/write_memory.py --title "Title" --content "Content" --tags "tag"`
+
+**Memory Template**: The scaffold has a `memory_template` field that defines when/how Agent reads and writes memories.
+You can modify it to guide Agent's memory usage strategy for this domain.
+
+You can explicitly choose no change when the current scaffold is sufficient.

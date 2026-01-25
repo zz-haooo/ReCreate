@@ -1,0 +1,13 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+z = np.arange(10)
+a = np.arange(10)
+
+# Plot y over x and z over a in two side-by-side subplots
+# Make "Y" the title of the first subplot and "Z" the title of the second subplot
+# Raise the title of the second subplot to be higher than the first one
+# SOLUTION START

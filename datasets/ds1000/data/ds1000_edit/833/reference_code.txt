@@ -1,0 +1,1 @@
+clf.steps.pop(1)

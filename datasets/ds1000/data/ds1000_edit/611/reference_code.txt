@@ -1,0 +1,1 @@
+plt.scatter(x, y, hatch="*")

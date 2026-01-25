@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# plot y over x
+# use font size 20 for title, font size 18 for xlabel and font size 16 for ylabel
+# SOLUTION START

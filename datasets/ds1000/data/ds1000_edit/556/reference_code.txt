@@ -1,0 +1,2 @@
+ax = plt.gca()
+ax.grid(True)

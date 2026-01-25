@@ -1,0 +1,4 @@
+def g(df):
+    return df.add_prefix('X')
+
+df = g(df.copy())

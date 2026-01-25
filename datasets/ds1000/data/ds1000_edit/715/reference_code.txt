@@ -1,0 +1,4 @@
+s, p = stats.ks_2samp(x, y)
+result = (p <= alpha)
+
+

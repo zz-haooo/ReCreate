@@ -1,0 +1,1 @@
+y = torch.argmin(softmax_output, dim=1).view(-1, 1)

@@ -1,0 +1,4 @@
+def g(df):
+    return df.replace('&AMP;','&', regex=True)
+
+df = g(df.copy())

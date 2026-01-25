@@ -1,0 +1,11 @@
+Problem:
+How does one convert a list of Z-scores from the Z-distribution (standard normal distribution, Gaussian distribution) to left-tailed p-values? I have yet to find the magical function in Scipy's stats module to do this, but one must be there.
+A:
+<code>
+import numpy as np
+import scipy.stats
+z_scores = np.array([-3, -2, 0, 2, 2.5])
+</code>
+p_values = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

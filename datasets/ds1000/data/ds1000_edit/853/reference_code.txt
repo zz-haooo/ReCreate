@@ -1,0 +1,5 @@
+def prePro(s):
+    return s.lower()
+
+
+tfidf = TfidfVectorizer(preprocessor=prePro)

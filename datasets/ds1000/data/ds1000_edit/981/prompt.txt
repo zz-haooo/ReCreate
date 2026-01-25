@@ -1,0 +1,16 @@
+Problem:
+
+I have two tensors of dimension 11 * 1. I want to check how many of the 11 elements are equal in the two tensors. I think I should be able to do this in few lines like Numpy but couldn't find a similar function.
+
+
+A:
+
+<code>
+import numpy as np
+import pandas as pd
+import torch
+A, B = load_data()
+</code>
+cnt_equal = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

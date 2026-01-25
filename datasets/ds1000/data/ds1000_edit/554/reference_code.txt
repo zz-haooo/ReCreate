@@ -1,0 +1,3 @@
+ax = plt.gca()
+ax.yaxis.set_ticks([3, 4])
+ax.yaxis.grid(True)

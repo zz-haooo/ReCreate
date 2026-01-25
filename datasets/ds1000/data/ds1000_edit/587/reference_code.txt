@@ -1,0 +1,2 @@
+[a, b] = plt.plot(x)
+plt.legend([a, b], ["a", "b"])

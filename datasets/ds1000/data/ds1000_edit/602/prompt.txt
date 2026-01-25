@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(2010, 2020)
+y = np.arange(10)
+plt.plot(x, y)
+
+# Rotate the xticklabels to -60 degree. Set the xticks horizontal alignment to left.
+# SOLUTION START

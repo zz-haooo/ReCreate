@@ -1,0 +1,13 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+fig, ax = plt.subplots(1, 1)
+plt.xlim(1, 10)
+plt.xticks(range(1, 10))
+ax.plot(y, x)
+
+# change the second x axis tick label to "second" but keep other labels in numerical
+# SOLUTION START

@@ -1,0 +1,12 @@
+Problem:
+How can I know the (row, column) index of the maximum of a numpy array/matrix?
+For example, if A = array([[1, 2], [3, 0]]), I want to get (1, 0)
+Thanks!
+A:
+<code>
+import numpy as np
+a = np.array([[1, 2], [3, 0]])
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

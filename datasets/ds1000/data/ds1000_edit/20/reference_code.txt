@@ -1,0 +1,1 @@
+df["category"] = df.idxmax(axis=1)

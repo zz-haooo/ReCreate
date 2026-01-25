@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = 10 * np.random.randn(10)
+y = x
+plt.plot(x, y, label="x-y")
+
+# put legend in the lower right
+# SOLUTION START

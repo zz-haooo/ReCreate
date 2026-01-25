@@ -1,0 +1,4 @@
+def g(a):
+    return tf.argmax(a,axis=1)
+
+result = g(a.__copy__())

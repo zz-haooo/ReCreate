@@ -1,0 +1,1 @@
+df = pd.concat([df_origin, pd.DataFrame(transform_output.toarray())], axis=1)

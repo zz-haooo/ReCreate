@@ -1,0 +1,1 @@
+i = np.diag(i)

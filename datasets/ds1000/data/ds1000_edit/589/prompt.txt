@@ -1,0 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+points = [(3, 5), (5, 10), (10, 150)]
+
+# plot a line plot for points in points.
+# Make the y-axis log scale
+# SOLUTION START

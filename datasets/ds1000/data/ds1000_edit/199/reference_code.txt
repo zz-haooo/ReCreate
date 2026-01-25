@@ -1,0 +1,4 @@
+def g(df):
+    return pd.DataFrame(df.row.str.split(' ', 1).tolist(), columns=['fips', 'row'])
+
+df = g(df.copy())

@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+
+x = np.arange(10)
+y = np.linspace(0, 1, 10)
+
+# Plot y over x with a scatter plot
+# Use the "Spectral" colormap and color each data point based on the y-value
+# SOLUTION START

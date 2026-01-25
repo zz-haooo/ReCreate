@@ -1,0 +1,4 @@
+def g(df):
+    return pd.Series(', '.join(df['text'].to_list()), name='text')
+
+result = g(df.copy())

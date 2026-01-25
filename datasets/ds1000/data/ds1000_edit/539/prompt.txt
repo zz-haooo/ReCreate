@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset("planets")
+g = sns.boxplot(x="method", y="orbital_period", data=df)
+
+# rotate the x axis labels by 90 degrees
+# SOLUTION START

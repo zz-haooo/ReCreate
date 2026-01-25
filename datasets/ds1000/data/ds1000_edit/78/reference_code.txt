@@ -1,0 +1,4 @@
+def g(df):
+    return df.groupby(df.index // 4).sum()
+
+result = g(df.copy())

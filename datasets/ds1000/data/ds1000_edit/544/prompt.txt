@@ -1,0 +1,14 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.rand(10)
+y = np.random.rand(10)
+z = np.random.rand(10)
+
+# plot x, then y then z, but so that x covers y and y covers z
+# SOLUTION START

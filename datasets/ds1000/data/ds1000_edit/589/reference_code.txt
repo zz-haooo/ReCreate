@@ -1,0 +1,2 @@
+plt.plot(*zip(*points))
+plt.yscale("log")

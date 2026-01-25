@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.arange(10)
+y = np.random.randn(10)
+plt.scatter(x, y)
+
+# show yticks and horizontal grid at y positions 3 and 4
+# SOLUTION START

@@ -1,0 +1,2 @@
+result = stats.kstest(times, stats.uniform(loc=0, scale=T).cdf)
+

@@ -1,0 +1,41 @@
+Problem:
+I have a simple dataframe which I would like to bin for every 4 rows.
+
+
+It looks like this:
+
+
+    col1
+0      1
+1      1
+2      4
+3      5
+4      1
+5      4
+and I would like to turn it into this:
+
+
+    col1
+0     11
+1      5
+I have already posted a similar question here but I have no Idea how to port the solution to my current use case.
+
+
+Can you help me out?
+
+
+Many thanks!
+
+
+
+
+A:
+<code>
+import pandas as pd
+
+
+df = pd.DataFrame({'col1':[1, 1, 4, 5, 1, 4]})
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

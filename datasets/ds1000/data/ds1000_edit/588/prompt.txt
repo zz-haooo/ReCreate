@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+z = np.arange(10)
+a = np.arange(10)
+
+# plot y over x and z over a in two different subplots
+# Set "Y and Z" as a main title above the two subplots
+# SOLUTION START

@@ -1,0 +1,3 @@
+    result = df.replace('&AMP;','&', regex=True)
+
+    return result

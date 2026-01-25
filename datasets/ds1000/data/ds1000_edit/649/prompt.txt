@@ -1,0 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+d = np.random.random((10, 10))
+
+# Use matshow to plot d and make the figure size (8, 8)
+# SOLUTION START

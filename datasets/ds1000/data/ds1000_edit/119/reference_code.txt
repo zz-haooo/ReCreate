@@ -1,0 +1,1 @@
+result = df.drop(test, inplace = False)

@@ -1,0 +1,2 @@
+g = sns.pairplot(df, x_vars=["x"], y_vars=["y"], hue="id")
+g._legend.remove()

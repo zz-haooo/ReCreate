@@ -1,0 +1,1 @@
+result = block_diag(*a)

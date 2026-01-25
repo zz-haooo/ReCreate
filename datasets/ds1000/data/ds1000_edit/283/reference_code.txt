@@ -1,0 +1,4 @@
+def g(df):
+    return df.set_axis(['Test', *df.columns[1:]], axis=1, inplace=False)
+
+result = g(df.copy())

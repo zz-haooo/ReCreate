@@ -1,0 +1,22 @@
+Problem:
+I'm sorry in advance if this is a duplicated question, I looked for this information but still couldn't find it.
+Is it possible to get a numpy array (or python list) filled with the indexes of the elements in increasing order?
+For instance, the array:
+a = array([4, 1, 0, 8, 5, 2])
+The indexes of the elements in increasing order would give :
+0 --> 2
+1 --> 1
+2 --> 5
+4 --> 0
+5 --> 4
+8 --> 3
+result = [2,1,5,0,4,3]
+Thanks in advance!
+A:
+<code>
+import numpy as np
+a = np.array([4, 1, 0, 8, 5, 2])
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

@@ -1,0 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.arange(10)
+
+# draw a line (with random y) for each different line style
+# SOLUTION START

@@ -1,0 +1,4 @@
+def g(a):
+    return tf.expand_dims(a, 2)
+
+result = g(a.__copy__())

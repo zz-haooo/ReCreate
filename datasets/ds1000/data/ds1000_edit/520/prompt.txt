@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = 10 * np.random.randn(10)
+
+plt.plot(x)
+
+# highlight in red the x range 2 to 4
+# SOLUTION START

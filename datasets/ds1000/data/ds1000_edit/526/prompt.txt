@@ -1,0 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.random.randn(10)
+y = np.random.randn(10)
+
+# in plt.plot(x, y), use a plus marker and give it a thickness of 7
+# SOLUTION START

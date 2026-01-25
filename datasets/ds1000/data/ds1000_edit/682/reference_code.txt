@@ -1,0 +1,4 @@
+def g(a):
+    return tf.squeeze(a)
+
+result = g(a.__copy__())

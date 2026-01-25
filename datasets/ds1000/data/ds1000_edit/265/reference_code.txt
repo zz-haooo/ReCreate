@@ -1,0 +1,4 @@
+def g(df):
+    return df.columns[df.iloc[0,:].fillna('Nan') == df.iloc[8,:].fillna('Nan')]
+
+result = g(df.copy())

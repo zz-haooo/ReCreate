@@ -1,0 +1,4 @@
+import matplotlib.pyplot as plt
+
+# Make a solid vertical line at x=3 and label it "cutoff". Show legend of this plot.
+# SOLUTION START

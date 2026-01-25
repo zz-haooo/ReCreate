@@ -1,0 +1,2 @@
+plt.rcParams["legend.fontsize"] = 20
+plt.legend(title="xxx")

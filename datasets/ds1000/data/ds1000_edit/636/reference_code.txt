@@ -1,0 +1,2 @@
+plt.imshow(data)
+plt.colorbar()

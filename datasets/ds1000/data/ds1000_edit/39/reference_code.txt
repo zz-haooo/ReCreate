@@ -1,0 +1,4 @@
+def g(df):
+    return df.apply(lambda x: x.value_counts()).T.stack()
+
+result = g(df.copy())

@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(0, 1000, 50)
+y = np.arange(0, 1000, 50)
+
+# plot y over x on a log-log plot
+# mark the axes with numbers like 1, 10, 100. do not use scientific notation
+# SOLUTION START

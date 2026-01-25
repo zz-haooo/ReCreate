@@ -1,0 +1,3 @@
+plt.axvline(x=0.22058956)
+plt.axvline(x=0.33088437)
+plt.axvline(x=2.20589566)

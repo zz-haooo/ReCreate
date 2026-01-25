@@ -1,0 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = np.random.random((10, 10))
+
+# plot the 2d matrix data with a colorbar
+# SOLUTION START

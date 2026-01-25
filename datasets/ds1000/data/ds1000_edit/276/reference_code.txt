@@ -1,0 +1,4 @@
+def g(df):
+    return df.sort_index(level='time')
+
+result = g(df.copy())

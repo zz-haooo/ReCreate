@@ -1,0 +1,14 @@
+Problem:
+I have a 2D list something like
+a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] 
+and I want to convert it to a 2d numpy array. Can we do it without allocating memory like
+numpy.zeros((3,3))
+and then storing values to it?
+A:
+<code>
+import numpy as np
+a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] 
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

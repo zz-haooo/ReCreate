@@ -1,0 +1,2 @@
+plt.plot(y, x, label="y")
+plt.legend(frameon=False)

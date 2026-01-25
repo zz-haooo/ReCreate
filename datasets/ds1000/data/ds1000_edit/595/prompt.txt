@@ -1,0 +1,8 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = [1000, 1000, 5000, 3000, 4000, 16000, 2000]
+
+# Make a histogram of data and renormalize the data to sum up to 1
+# Format the y tick labels into percentage and set y tick labels as 10%, 20%, etc.
+# SOLUTION START

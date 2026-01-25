@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.arange(10)
+y = np.random.randn(10)
+
+# line plot x and y with a thin diamond marker
+# SOLUTION START

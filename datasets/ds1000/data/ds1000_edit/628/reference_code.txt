@@ -1,0 +1,2 @@
+plt.plot(x, y)
+plt.xticks(np.arange(min(x), max(x) + 1, 1.0))

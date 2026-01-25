@@ -1,0 +1,11 @@
+Problem:
+How do I convert a numpy array to tensorflow tensor?
+A:
+<code>
+import tensorflow as tf
+import numpy as np
+a = np.ones([2,3,4])
+</code>
+a_tf = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

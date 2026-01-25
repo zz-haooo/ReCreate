@@ -1,0 +1,8 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.random.random((10, 2))
+
+# Plot each column in x as an individual line and label them as "a" and "b"
+# SOLUTION START

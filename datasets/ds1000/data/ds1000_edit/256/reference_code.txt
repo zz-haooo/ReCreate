@@ -1,0 +1,6 @@
+def g(df):
+    L = df.col1.sum()
+    L = map(lambda x:str(x), L)
+    return ','.join(L)
+
+result = g(df.copy())

@@ -1,0 +1,7 @@
+from matplotlib import lines
+
+styles = lines.lineMarkers
+nstyles = len(styles)
+for i, sty in enumerate(styles):
+    y = np.random.randn(*x.shape)
+    plt.plot(x, y, marker=sty)

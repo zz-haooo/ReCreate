@@ -1,0 +1,4 @@
+def g(A):
+    return tf.math.reciprocal(A)
+
+result = g(A.__copy__())

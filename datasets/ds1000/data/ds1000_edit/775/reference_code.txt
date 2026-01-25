@@ -1,0 +1,2 @@
+result = sparse.spdiags(matrix, (1, 0, -1), 5, 5).T.A
+

@@ -1,0 +1,4 @@
+import matplotlib.pyplot as plt
+
+# draw vertical lines at [0.22058956, 0.33088437, 2.20589566]
+# SOLUTION START

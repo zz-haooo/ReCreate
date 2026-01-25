@@ -1,0 +1,15 @@
+Problem:
+I'm using tensorflow 2.10.0.
+What is the equivalent of the following in Tensorflow?
+np.reciprocal(A)
+I want to get a tensor.
+
+A:
+<code>
+import tensorflow as tf
+
+A = tf.constant([-0.5, -0.1, 0, 0.1, 0.5, 2], dtype=tf.float32)
+</code>
+result = ... # put solution in this variable
+BEGIN SOLUTION
+<code>

@@ -1,0 +1,6 @@
+def g(df):
+    df = df.set_index('cat')
+    res = df.div(df.sum(axis=0), axis=1)
+    return res.reset_index()
+
+df = g(df.copy())

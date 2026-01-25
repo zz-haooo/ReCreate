@@ -1,0 +1,2 @@
+ax = plt.gca()
+ax.set_xticklabels(ax.get_xticklabels(), rotation=90)

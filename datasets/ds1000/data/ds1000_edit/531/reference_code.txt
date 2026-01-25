@@ -1,0 +1,2 @@
+l.set_markeredgecolor((1, 0, 0, 1))
+l.set_color((1, 0, 0, 1))

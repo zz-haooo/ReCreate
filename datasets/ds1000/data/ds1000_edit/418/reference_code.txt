@@ -1,0 +1,2 @@
+new_data = data[:, ::-1]
+bin_data_mean = new_data[:,:(data.shape[1] // bin_size) * bin_size].reshape(data.shape[0], -1, bin_size).mean(axis=-1)

@@ -1,0 +1,2 @@
+rows, cols = M.nonzero()
+M[cols, rows] = M[rows, cols]

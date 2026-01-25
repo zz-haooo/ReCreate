@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.linspace(0, 2 * np.pi, 10)
+y = np.cos(x)
+
+plt.plot(x, y, label="sin")
+
+# show legend and set the font to size 20
+# SOLUTION START

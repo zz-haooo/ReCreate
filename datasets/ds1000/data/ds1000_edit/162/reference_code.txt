@@ -1,0 +1,5 @@
+def g(df):
+    df.columns = pd.MultiIndex.from_tuples(df.columns, names=['Caps','Lower'])
+    return df
+
+df = g(df.copy())

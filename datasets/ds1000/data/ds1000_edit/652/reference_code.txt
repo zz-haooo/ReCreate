@@ -1,0 +1,2 @@
+plt.plot(x, y)
+plt.tick_params(top=True)

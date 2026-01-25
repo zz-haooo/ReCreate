@@ -1,0 +1,4 @@
+def g(df):
+    return df.add_suffix('X')
+
+df = g(df.copy())

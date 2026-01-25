@@ -1,0 +1,7 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+H = np.random.randn(10, 10)
+
+# show the 2d array H in black and white
+# SOLUTION START

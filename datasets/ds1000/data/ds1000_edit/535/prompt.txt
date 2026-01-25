@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.random.randn(10)
+y = np.random.randn(10)
+sns.distplot(x, label="a", color="0.25")
+sns.distplot(y, label="b", color="0.25")
+
+# add legends
+# SOLUTION START

@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.random.rand(10)
+y = np.random.rand(10)
+
+# Plot a grouped histograms of x and y on a single chart with matplotlib
+# Use grouped histograms so that the histograms don't overlap with each other
+# SOLUTION START

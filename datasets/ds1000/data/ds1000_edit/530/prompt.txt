@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.random.randn(10)
+y = np.random.randn(10)
+
+(l,) = plt.plot(range(10), "o-", lw=5, markersize=30)
+
+# make the border of the markers solid black
+# SOLUTION START

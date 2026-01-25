@@ -1,0 +1,3 @@
+nums = np.ones(size)
+nums[:int(size*(1-one_ratio))] = 0
+np.random.shuffle(nums)

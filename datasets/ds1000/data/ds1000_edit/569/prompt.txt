@@ -1,0 +1,15 @@
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+
+df = pd.DataFrame(
+    {
+        "celltype": ["foo", "bar", "qux", "woz"],
+        "s1": [5, 9, 1, 7],
+        "s2": [12, 90, 13, 87],
+    }
+)
+
+# For data in df, make a bar plot of s1 and s1 and use celltype as the xlabel
+# Make the x-axis tick labels rotate 45 degrees
+# SOLUTION START

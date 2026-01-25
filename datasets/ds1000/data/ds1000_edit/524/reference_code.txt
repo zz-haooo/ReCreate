@@ -1,0 +1,1 @@
+sns.lineplot(x=x, y=y)

@@ -1,0 +1,9 @@
+import matplotlib.pyplot as plt
+import numpy as np, pandas as pd
+import seaborn as sns
+
+tips = sns.load_dataset("tips")
+
+# Make a seaborn joint regression plot (kind='reg') of 'total_bill' and 'tip' in the tips dataframe
+# do not use scatterplot for the joint plot
+# SOLUTION START

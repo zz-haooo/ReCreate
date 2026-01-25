@@ -1,0 +1,1 @@
+ab = torch.cat((a, b), 0)

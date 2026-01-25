@@ -1,0 +1,3 @@
+c = np.empty_like(permutation)
+c[permutation] = np.arange(len(permutation))
+a = a[:, c]

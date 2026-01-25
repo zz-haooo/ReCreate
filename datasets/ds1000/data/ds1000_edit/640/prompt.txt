@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(11)
+y = np.arange(11)
+plt.xlim(0, 10)
+plt.ylim(0, 10)
+
+# Plot a scatter plot x over y and set both the x limit and y limit to be between 0 and 10
+# Turn off axis clipping so data points can go beyond the axes
+# SOLUTION START

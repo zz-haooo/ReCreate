@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.random.randn(10)
+y = np.random.randn(10)
+
+(l,) = plt.plot(range(10), "o-", lw=5, markersize=30)
+
+# set the face color of the markers to have an alpha (transparency) of 0.2
+# SOLUTION START

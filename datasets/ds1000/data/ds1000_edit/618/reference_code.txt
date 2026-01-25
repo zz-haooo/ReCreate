@@ -1,0 +1,1 @@
+plt.pie(data, labels=l, wedgeprops=dict(width=0.4))

@@ -1,0 +1,2 @@
+result = sf.dct(np.eye(N), axis=0, norm= 'ortho')
+

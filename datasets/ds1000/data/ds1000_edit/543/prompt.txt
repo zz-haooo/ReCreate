@@ -1,0 +1,11 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = np.random.randn(10)
+y = x
+plt.scatter(x, y)
+
+# put y ticks at -1 and 1 only
+# SOLUTION START

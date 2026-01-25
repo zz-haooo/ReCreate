@@ -1,0 +1,1 @@
+C = B[:, A_log.bool()]

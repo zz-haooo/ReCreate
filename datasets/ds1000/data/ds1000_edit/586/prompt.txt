@@ -1,0 +1,9 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.random.random((10, 10))
+y = np.random.random((10, 10))
+
+# make two colormaps with x and y and put them into different subplots
+# use a single colorbar for these two subplots
+# SOLUTION START

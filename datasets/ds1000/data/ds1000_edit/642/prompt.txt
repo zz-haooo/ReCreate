@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# plot y over x on a 2 by 2 subplots with a figure size of (15, 15)
+# repeat the plot in each subplot
+# SOLUTION START

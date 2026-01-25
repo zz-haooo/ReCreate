@@ -1,0 +1,2 @@
+fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
+plt.bar(labels, height)

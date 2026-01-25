@@ -1,0 +1,1 @@
+result = scipy.integrate.quadrature(lambda x: 2*c*x, low, high)[0]

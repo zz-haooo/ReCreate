@@ -1,0 +1,15 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10, 20)
+z = np.arange(10)
+
+import matplotlib.pyplot as plt
+
+plt.plot(x, y)
+plt.plot(x, z)
+
+# Give names to the lines in the above plot 'Y' and 'Z' and show them in a legend
+# SOLUTION START

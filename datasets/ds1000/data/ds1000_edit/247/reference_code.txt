@@ -1,0 +1,4 @@
+def g(s):
+    return pd.DataFrame.from_records(s.values,index=s.index).reset_index().rename(columns={'index': 'name'})
+
+df = g(series.copy())

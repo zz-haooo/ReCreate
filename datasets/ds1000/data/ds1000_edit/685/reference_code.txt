@@ -1,0 +1,4 @@
+def g(A):
+    return tf.reduce_sum(A, 1)
+
+result = g(A.__copy__())

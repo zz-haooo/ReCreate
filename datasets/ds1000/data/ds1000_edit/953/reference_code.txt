@@ -1,0 +1,3 @@
+max_len = max(lens)
+mask = torch.arange(max_len).expand(len(lens), max_len) > (max_len - lens.unsqueeze(1) - 1)
+mask = mask.type(torch.LongTensor)

@@ -1,0 +1,4 @@
+def g(df):
+    return df.sort_values('VIM')
+
+result = g(df.copy())

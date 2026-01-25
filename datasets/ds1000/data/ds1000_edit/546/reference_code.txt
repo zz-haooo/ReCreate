@@ -1,0 +1,2 @@
+plt.bar(x, y)
+plt.yticks(np.arange(0, np.max(y), step=1))

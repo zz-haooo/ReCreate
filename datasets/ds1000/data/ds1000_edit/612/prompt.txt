@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# Make a scatter plot with x and y and set marker size to be 100
+# Combine star hatch and vertical line hatch together for the marker
+# SOLUTION START

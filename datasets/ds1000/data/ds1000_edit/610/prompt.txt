@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# Make a scatter plot with x and y and remove the edge of the marker
+# Use vertical line hatch for the marker
+# SOLUTION START

@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(2010, 2020)
+y = np.arange(10)
+plt.plot(x, y)
+
+# Set the transparency of xtick labels to be 0.5
+# SOLUTION START

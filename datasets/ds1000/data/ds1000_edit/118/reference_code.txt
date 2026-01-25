@@ -1,0 +1,4 @@
+def g(df, test):
+    return df.loc[test]
+
+result = g(df, test)

@@ -1,0 +1,3 @@
+plt.axline((a, b), (c, d))
+plt.xlim(0, 5)
+plt.ylim(0, 5)

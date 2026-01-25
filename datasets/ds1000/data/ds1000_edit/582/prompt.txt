@@ -1,0 +1,9 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+x = np.arange(10)
+y = np.arange(10)
+
+# Make two subplots. Make the first subplot three times wider than the second subplot but they should have the same height.
+# SOLUTION START

@@ -1,0 +1,12 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset("penguins")[
+    ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+]
+
+# make a seaborn scatter plot of bill_length_mm and bill_depth_mm
+# use markersize 30 for all data points in the scatter plot
+# SOLUTION START

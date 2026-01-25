@@ -1,0 +1,3 @@
+from sklearn.preprocessing import MultiLabelBinarizer
+
+new_f = MultiLabelBinarizer().fit_transform(f)

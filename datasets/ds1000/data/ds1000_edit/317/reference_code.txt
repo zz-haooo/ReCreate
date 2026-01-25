@@ -1,0 +1,1 @@
+result = np.array(a)

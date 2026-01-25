@@ -1,0 +1,7 @@
+import matplotlib.pyplot as plt
+
+labels = ["a", "b"]
+height = [3, 4]
+
+# Use polar projection for the figure and make a bar plot with labels in `labels` and bar height in `height`
+# SOLUTION START

@@ -1,0 +1,4 @@
+f = plt.figure()
+ax = f.add_subplot(111)
+ax.plot(x, y)
+ax.yaxis.tick_right()

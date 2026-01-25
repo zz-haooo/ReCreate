@@ -1,0 +1,4 @@
+def g(df):
+    return df.replace('&LT;','<', regex=True)
+
+df = g(df.copy())

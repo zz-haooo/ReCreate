@@ -1,0 +1,2 @@
+plt.plot(y, x)
+plt.title(r"$\mathbf{\phi}$")

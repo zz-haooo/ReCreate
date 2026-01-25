@@ -1,0 +1,8 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+H = np.random.randn(10, 10)
+
+# color plot of the 2d array H
+# SOLUTION START

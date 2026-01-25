@@ -1,0 +1,2 @@
+plt.yticks(rotation=-60)
+plt.yticks(va="top")

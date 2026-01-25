@@ -1,0 +1,10 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset("penguins")[["bill_length_mm", "species", "sex"]]
+
+# Make a stripplot for the data in df. Use "sex" as x, "bill_length_mm" as y, and "species" for the color
+# Remove the legend from the stripplot
+# SOLUTION START

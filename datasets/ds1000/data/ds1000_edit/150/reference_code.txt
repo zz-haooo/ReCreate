@@ -1,0 +1,4 @@
+def g(df):
+    return df.groupby('l')['v'].apply(pd.Series.sum,skipna=False).reset_index()
+
+result = g(df.copy())
