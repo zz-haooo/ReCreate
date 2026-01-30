@@ -149,6 +149,11 @@ The task metadata is pre-cached in `datasets/appworld/config/task_cache.json`, s
 </details>
 
 
+
+> **Custom domains.** If you want to plug in a personalized domain/environment, use `src/recreate_agent/adapters/` as a reference to define the environment wrapper and the required domain metadata.
+
+
+
 ## Usage
 
 ### Run All Domains
@@ -184,6 +189,10 @@ You can configure models via command-line arguments or environment variables:
 # Using command-line arguments (recommended)
 DOMAIN=swe bash scripts/run_evolve.sh --agent-model gpt-5-mini --recreate-model claude-opus-4-5-20251101
 ```
+
+> **Note.** Model choice matters. ReCreate benefits from strong reasoning models (especially for the ReCreate-Agent); With weaker models, results may be less stable and performance can drop.
+
+
 
 ### Configuration
 
