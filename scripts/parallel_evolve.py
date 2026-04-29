@@ -21,7 +21,7 @@ import json
 import logging
 import os
 import sys
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError, as_completed
 from datetime import datetime
 from pathlib import Path
 
@@ -116,6 +116,7 @@ def main(
         adapter_kwargs["data_source"] = data_source
     
     adapter = get_adapter(domain, **adapter_kwargs)
+    domain_config = adapter.get_recreate_agent_config()
     
     # Setup directories (ensure absolute paths for Docker mount compatibility)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -156,7 +157,7 @@ def main(
         workspace, runs_recreate_dir, recreate_model, recreate_temp,
         adapter.domain_name, adapter.domain_description,
         adapter.get_initial_prompt_template(),
-        adapter.get_recreate_agent_config(),
+        domain_config,
         ablation_settings,
     ):
         console.print("[red]Failed to create initial scaffold[/red]")
@@ -179,7 +180,7 @@ def main(
         "ablation_settings": ablation_settings,
         "created_at": datetime.now().isoformat(),
     }
-    (experiment_dir / "config.json").write_text(json.dumps(config, indent=4))
+    (experiment_dir / "config.json").write_text(json.dumps(config, indent=4, ensure_ascii=False))
     
     # Load dataset
     all_instances = adapter.load_dataset(subset=subset, shuffle_file=shuffle_file)
@@ -240,6 +241,7 @@ def main(
             
             with ThreadPoolExecutor(max_workers=batch_size) as executor:
                 futures = {}
+                future_to_instance = {}
                 for instance in batch_instances:
                     instance_dir = batch_dir / instance.instance_id
                     future = executor.submit(
@@ -253,52 +255,63 @@ def main(
                         agent_temp=agent_temp,
                         recreate_temp=recreate_temp,
                         domain=domain,
-                        domain_config=adapter.get_recreate_agent_config(),
+                        domain_config=domain_config,
                         runs_recreate_dir=runs_recreate_dir,
                         ablation_settings=ablation_settings,
                     )
                     futures[instance.instance_id] = future
+                    future_to_instance[future] = instance.instance_id
                 
-                # Wait for all to complete with timeout handling
                 completed = set()
-                for instance_id, future in futures.items():
-                    try:
-                        result = future.result(timeout=600)  # 10 min timeout per instance
-                        batch_results[instance_id] = result
-                        completed.add(instance_id)
-                    except FutureTimeoutError as e:
-                        console.print(f"  [red]{instance_id}: Timeout or error - {e}[/red]")
-                        # Cancel the future if it's still running
-                        future.cancel()
-                        result = BatchResult(
-                            instance_id=instance_id,
-                            success=False, score=0.0,
-                            scaffold_changed=False, has_new_tools=False, has_new_memories=False,
-                            error=f"Timeout after 600s: {str(e)}",
-                            exit_status="Timeout",
-                            duration=600.0
-                        )
-                        batch_results[instance_id] = result
-                        completed.add(instance_id)
-                    except Exception as e:
-                        console.print(f"  [red]{instance_id}: Timeout or error - {e}[/red]")
-                        # Cancel the future if it's still running
+                try:
+                    for future in as_completed(future_to_instance.keys(), timeout=600):
+                        instance_id = future_to_instance[future]
                         try:
-                            future.cancel()
-                        except Exception:
-                            pass
-                        result = BatchResult(
-                            instance_id=instance_id,
-                            success=False, score=0.0,
-                            scaffold_changed=False, has_new_tools=False, has_new_memories=False,
-                            error=str(e),
-                            exit_status=type(e).__name__,
-                            duration=0.0
-                        )
+                            result = future.result()
+                        except Exception as e:
+                            console.print(f"  [red]{instance_id}: Timeout or error - {e}[/red]")
+                            try:
+                                future.cancel()
+                            except Exception:
+                                pass
+                            result = BatchResult(
+                                instance_id=instance_id,
+                                success=False, score=0.0,
+                                scaffold_changed=False, has_new_tools=False, has_new_memories=False,
+                                error=str(e),
+                                exit_status=type(e).__name__,
+                                duration=0.0
+                            )
                         batch_results[instance_id] = result
                         completed.add(instance_id)
-                    
-                    # Always add to all_results (both success and failure)
+                        all_results.append({
+                            "instance_id": instance_id,
+                            "batch": batch_idx,
+                            "round": repeat_idx + 1,
+                            "success": result.success,
+                            "score": result.score,
+                            "scaffold_changed": result.scaffold_changed,
+                        })
+                except FutureTimeoutError:
+                    console.print(f"  [yellow]Batch timeout after 600s, cancelling remaining instances[/yellow]")
+                
+                # Handle any futures that did not complete in time
+                for instance_id, future in futures.items():
+                    if instance_id in completed:
+                        continue
+                    try:
+                        future.cancel()
+                    except Exception:
+                        pass
+                    result = BatchResult(
+                        instance_id=instance_id,
+                        success=False, score=0.0,
+                        scaffold_changed=False, has_new_tools=False, has_new_memories=False,
+                        error="Timeout after 600s",
+                        exit_status="Timeout",
+                        duration=600.0
+                    )
+                    batch_results[instance_id] = result
                     all_results.append({
                         "instance_id": instance_id,
                         "batch": batch_idx,
@@ -307,14 +320,6 @@ def main(
                         "score": result.score,
                         "scaffold_changed": result.scaffold_changed,
                     })
-                
-                # Ensure all futures are handled (cancel any remaining)
-                for instance_id, future in futures.items():
-                    if instance_id not in completed:
-                        try:
-                            future.cancel()
-                        except Exception:
-                            pass
             
             # Save batch info
             batch_info = {
@@ -348,7 +353,7 @@ def main(
                 recreate_model=recreate_model,
                 recreate_temp=recreate_temp,
                 domain=domain,
-                domain_config=adapter.get_recreate_agent_config(),
+                domain_config=domain_config,
                 runs_recreate_dir=runs_recreate_dir,
                 ablation_settings=ablation_settings,
                 EvolutionStats=EvolutionStats,
